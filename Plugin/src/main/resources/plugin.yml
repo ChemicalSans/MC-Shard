@@ -1,0 +1,7 @@
+name: MinecraftShardPlugin
+version: '${project.version}'
+main: net.nussi.mcs.MinecraftShardPlugin
+api-version: 1.16
+load: STARTUP
+authors: [ Nussi ]
+website: nussi.net
