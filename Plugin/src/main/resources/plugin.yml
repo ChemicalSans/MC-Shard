@@ -5,3 +5,8 @@ api-version: 1.16
 load: STARTUP
 authors: [ Nussi ]
 website: nussi.net
+commands:
+  createnpc:
+    usage: Used to create a NPC
+  updatenpc:
+    usage: Upadete NPC

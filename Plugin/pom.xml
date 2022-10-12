@@ -71,5 +71,12 @@
             <version>1.16.5-R0.1-SNAPSHOT</version>
             <scope>provided</scope>
         </dependency>
+        <dependency>
+            <groupId>net.minecraft.server</groupId>
+            <artifactId>v1_16_R3</artifactId>
+            <version>1.0</version>
+            <scope>system</scope>
+            <systemPath>${project.basedir}/src/main/resources/spigot-1.16.5.jar</systemPath>
+        </dependency>
     </dependencies>
 </project>
