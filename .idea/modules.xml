@@ -3,7 +3,9 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/Plugin/Plugin.iml" filepath="$PROJECT_DIR$/Plugin/Plugin.iml" />
-      <module fileurl="file://$PROJECT_DIR$/Server/Server.iml" filepath="$PROJECT_DIR$/Server/Server.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Server/ServerAlpha.iml" filepath="$PROJECT_DIR$/Server/ServerAlpha.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ServerBeta/ServerBeta.iml" filepath="$PROJECT_DIR$/ServerBeta/ServerBeta.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Shard/Shard.iml" filepath="$PROJECT_DIR$/Shard/Shard.iml" />
     </modules>
   </component>
 </project>

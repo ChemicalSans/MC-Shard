@@ -24,15 +24,13 @@ public class NPC {
     EntityPlayer npc;
     GameProfile gameProfile;
     String name;
-    UUID uuid;
 
     public NPC(String name, Location location) {
         this.name = name;
-        uuid = UUID.randomUUID();
 
         MinecraftServer server = ((CraftServer) Bukkit.getServer()).getServer();
         WorldServer world = ((CraftWorld) Bukkit.getWorld(location.getWorld().getName())).getHandle();
-        gameProfile = new GameProfile(uuid, name);
+        gameProfile = new GameProfile(UUID.randomUUID(), name);
         try {
             String uuid = NPC.getUUID(name);
             String[] textureData = NPC.getSkin(uuid);
@@ -52,18 +50,7 @@ public class NPC {
                 location.getPitch()
         );
 
-        addNPCPacket();
 
-    }
-
-    public void addNPCPacket() {
-        for(Player player : Bukkit.getOnlinePlayers()) {
-            PlayerConnection connection = ((CraftPlayer) player).getHandle().playerConnection;
-
-            connection.sendPacket(new PacketPlayOutPlayerInfo(PacketPlayOutPlayerInfo.EnumPlayerInfoAction.ADD_PLAYER, npc));
-            connection.sendPacket(new PacketPlayOutNamedEntitySpawn(npc));
-            connection.sendPacket(new PacketPlayOutEntityHeadRotation(npc, (byte) (npc.yaw * 256/360)));
-        }
     }
 
     public void addNPCPacket(Player player) {
@@ -74,19 +61,18 @@ public class NPC {
         connection.sendPacket(new PacketPlayOutEntityHeadRotation(npc, (byte) (npc.yaw * 256/360)));
     }
 
-    public void removeNPCPacket() {
-        for(Player player : Bukkit.getOnlinePlayers()) {
-            PlayerConnection connection = ((CraftPlayer) player).getHandle().playerConnection;
+    public void removeNPCPacket(Player player) {
+        PlayerConnection connection = ((CraftPlayer) player).getHandle().playerConnection;
 
-            connection.sendPacket(new PacketPlayOutPlayerInfo(PacketPlayOutPlayerInfo.EnumPlayerInfoAction.REMOVE_PLAYER, npc));
-            connection.sendPacket(new PacketPlayOutNamedEntitySpawn(npc));
-            connection.sendPacket(new PacketPlayOutEntityHeadRotation(npc, (byte) (npc.yaw * 256/360)));
+        connection.sendPacket(new PacketPlayOutPlayerInfo(PacketPlayOutPlayerInfo.EnumPlayerInfoAction.REMOVE_PLAYER, npc));
+        connection.sendPacket(new PacketPlayOutEntityDestroy(npc.getId()));
+//        connection.sendPacket(new PacketPlayOutNamedEntitySpawn(npc));
+//        connection.sendPacket(new PacketPlayOutEntityHeadRotation(npc, (byte) (npc.yaw * 256/360)));
 //            connection.sendPacket(new PacketPlayOutPlayerInfo(PacketPlayOutPlayerInfo.EnumPlayerInfoAction.UPDATE_LATENCY));
-        }
     }
 
-    public void teleport(double x, double y, double z, float yaw, float pitch) {
-        npc.setLocation(x, y, z, yaw, pitch);
+    public void teleport(double x, double y, double z, double yaw, double pitch) {
+        npc.setLocation(x, y, z, (float) yaw, (float) pitch);
         for(Player player : Bukkit.getOnlinePlayers()) {
             PlayerConnection connection = ((CraftPlayer) player).getHandle().playerConnection;
             connection.sendPacket(new PacketPlayOutEntityTeleport(npc));
@@ -94,32 +80,17 @@ public class NPC {
         }
     }
 
-//    public void lookAt(Location location) {
-//        //TODO GET LIFE
-//        Vec3D vec = new Vec3D(
-//                npc.locX()- location.getX(),
-//                npc.locY()- location.getY(),
-//                npc.locZ()- location.getZ()
-//        );
-//
-//        double hyp = Math.sqrt(vec.x*vec.x + vec.y*vec.y + vec.z*vec.z);
-//        vec = new Vec3D(
-//                vec.x/hyp,
-//                vec.y/hyp,
-//                vec.z/hyp
-//        );
-//
-//        float pitch = (float) Math.asin(-vec.y) * 256/360;
-//        float yaw = (float) Math.toDegrees(Math.atan2(vec.x, vec.z));
-//
-//        teleport(
-//                npc.locX(),
-//                npc.locY(),
-//                npc.locZ(),
-//                yaw,
-//                pitch
-//        );
-//    }
+    public EntityPlayer getNpc() {
+        return npc;
+    }
+
+    public GameProfile getGameProfile() {
+        return gameProfile;
+    }
+
+    public String getName() {
+        return name;
+    }
 
 
     public static List<NPC> getNPCS() {
@@ -128,7 +99,18 @@ public class NPC {
 
     public static void createNPCS(String name, Location location) {
         NPC npc = new NPC(name, location);
+        for(Player player : Bukkit.getOnlinePlayers()) {
+            npc.addNPCPacket(player);
+        }
         NPCS.add(npc);
+    }
+
+    public static void deleteNPC(String name) throws NpcNotFoundException {
+        NPC npc = getNPC(name);
+        NPCS.remove(npc);
+        for(Player player : Bukkit.getOnlinePlayers()) {
+            npc.removeNPCPacket(player);
+        }
     }
 
     public static NPC getNPC(String name) throws NpcNotFoundException {
@@ -166,7 +148,7 @@ public class NPC {
         }
     }
 
-    static class NpcNotFoundException extends Exception {
+    public static class NpcNotFoundException extends Exception {
         public NpcNotFoundException(String message) {
             super(message);
         }

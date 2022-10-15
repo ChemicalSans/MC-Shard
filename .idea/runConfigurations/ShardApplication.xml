@@ -1,0 +1,11 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="ShardApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+    <module name="Shard" />
+    <option name="SPRING_BOOT_MAIN_CLASS" value="net.nussi.mcs.shard.ShardApplication" />
+    <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
+    <option name="ALTERNATIVE_JRE_PATH" value="17" />
+    <method v="2">
+      <option name="Make" enabled="true" />
+    </method>
+  </configuration>
+</component>

@@ -1,0 +1,30 @@
+<component name="InspectionProjectProfileManager">
+  <profile version="1.0">
+    <option name="myName" value="Project Default" />
+    <inspection_tool class="IncorrectHttpHeaderInspection" enabled="true" level="WARNING" enabled_by_default="true">
+      <option name="customHeaders">
+        <set>
+          <option value="mcs.player.uuid" />
+          <option value="mcs.player.name" />
+          <option value="mcs.player.server" />
+          <option value="mcs.player.world" />
+          <option value="mcs.player.x" />
+          <option value="mcs.player.y" />
+          <option value="mcs.player.z" />
+          <option value="mcs.player.yaw" />
+          <option value="mcs.player.pitch" />
+          <option value="mcs.player.uuid = 2" />
+          <option value="mcs_player_uuid" />
+          <option value="mcs_player_pitch" />
+          <option value="mcs_player_name" />
+          <option value="mcs_player_server" />
+          <option value="mcs_player_world" />
+          <option value="mcs_player_x" />
+          <option value="mcs_player_y" />
+          <option value="mcs_player_z" />
+          <option value="mcs_player_yaw" />
+        </set>
+      </option>
+    </inspection_tool>
+  </profile>
+</component>
