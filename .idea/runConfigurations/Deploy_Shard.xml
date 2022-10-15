@@ -1,7 +1,0 @@
-<component name="ProjectRunConfigurationManager">
-  <configuration default="false" name="Deploy Shard" type="Multirun" separateTabs="false" reuseTabsWithFailures="false" startOneByOne="false" markFailedProcess="true" hideSuccessProcess="false" delayTime="0.0">
-    <runConfiguration name="Server" type="JAR Application" />
-    <runConfiguration name="ShardApplication" type="Spring Boot" />
-    <method v="2" />
-  </configuration>
-</component>

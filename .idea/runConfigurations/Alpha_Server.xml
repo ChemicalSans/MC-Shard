@@ -1,0 +1,11 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="Alpha Server" type="JarApplication">
+    <option name="JAR_PATH" value="$PROJECT_DIR$/ServerAlpha/spigot-1.16.5.jar" />
+    <option name="PROGRAM_PARAMETERS" value="--nogui" />
+    <option name="WORKING_DIRECTORY" value="C:\Users\danie\IdeaProjects\MC-Shard\ServerAlpha" />
+    <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
+    <option name="ALTERNATIVE_JRE_PATH" value="1.8" />
+    <module name="ServerAlpha" />
+    <method v="2" />
+  </configuration>
+</component>
