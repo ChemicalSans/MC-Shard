@@ -1,6 +1,7 @@
 package net.nussi.mcs;
 
 import org.bukkit.Bukkit;
+import org.bukkit.Location;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
@@ -29,16 +30,29 @@ public final class MinecraftShardPlugin extends JavaPlugin {
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
         if(!(sender instanceof Player)) return true;
+        Player player = (Player) sender;
         switch (label) {
             case "createnpc":
-                Player player = (Player) sender;
-                NPC.createNPC(player);
+                if(args.length == 0) return true;
+                String name = args[0];
+                NPC.createNPCS(name, player.getLocation());
                 player.sendMessage("Created NPC!");
                 return false;
             case "updatenpc":
-                NPC.getNPCS().forEach(npc -> {
-                    npc.relativeTeleport(0,1,0);
-                });
+                if(args.length == 0) return true;
+                try {
+                    NPC npc = NPC.getNPC(args[0]);
+                    npc.teleport(
+                            player.getLocation().getX(),
+                            player.getLocation().getY(),
+                            player.getLocation().getZ(),
+                            player.getLocation().getYaw(),
+                            player.getLocation().getPitch()
+                    );
+//                    npc.lookAt(player.getLocation());
+                } catch (NPC.NpcNotFoundException e) {
+                    player.sendMessage("NPC " + args[0] + " was not found!");
+                }
                 return false;
         }
 

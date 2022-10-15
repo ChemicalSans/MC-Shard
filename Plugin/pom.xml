@@ -78,5 +78,10 @@
             <scope>system</scope>
             <systemPath>${project.basedir}/src/main/resources/spigot-1.16.5.jar</systemPath>
         </dependency>
+        <dependency>
+            <groupId>com.konghq</groupId>
+            <artifactId>unirest-java</artifactId>
+            <version>3.13.11</version>
+        </dependency>
     </dependencies>
 </project>

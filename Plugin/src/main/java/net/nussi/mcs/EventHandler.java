@@ -11,7 +11,7 @@ public class EventHandler implements Listener {
         if(NPC.getNPCS() == null) return;
         if(NPC.getNPCS().isEmpty()) return;
         NPC.getNPCS().forEach(npc -> {
-            npc.addJoinPacket(event.getPlayer());
+            npc.addNPCPacket(event.getPlayer());
         });
 
     }
