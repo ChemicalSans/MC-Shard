@@ -5,7 +5,6 @@ import com.mojang.authlib.properties.Property;
 import kong.unirest.HttpResponse;
 import kong.unirest.JsonNode;
 import kong.unirest.Unirest;
-import kong.unirest.json.JSONException;
 import kong.unirest.json.JSONObject;
 import net.minecraft.server.v1_16_R3.*;
 import org.bukkit.Bukkit;
@@ -15,7 +14,9 @@ import org.bukkit.craftbukkit.v1_16_R3.CraftWorld;
 import org.bukkit.craftbukkit.v1_16_R3.entity.CraftPlayer;
 import org.bukkit.entity.Player;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.UUID;
 
 public class NPC {
 
@@ -41,6 +42,7 @@ public class NPC {
         }
 
         npc = new EntityPlayer(server, world, gameProfile, new PlayerInteractManager(world));
+
 
         npc.setLocation(
                 location.getX(),
@@ -69,6 +71,7 @@ public class NPC {
 //        connection.sendPacket(new PacketPlayOutNamedEntitySpawn(npc));
 //        connection.sendPacket(new PacketPlayOutEntityHeadRotation(npc, (byte) (npc.yaw * 256/360)));
 //            connection.sendPacket(new PacketPlayOutPlayerInfo(PacketPlayOutPlayerInfo.EnumPlayerInfoAction.UPDATE_LATENCY));
+        connection.sendPacket(new PacketPlayOutAnimation(npc,0));
     }
 
     public void teleport(double x, double y, double z, double yaw, double pitch) {

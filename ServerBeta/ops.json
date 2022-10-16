@@ -4,5 +4,11 @@
     "name": "Chemical_Sans",
     "level": 4,
     "bypassesPlayerLimit": false
+  },
+  {
+    "uuid": "73d01650-36f7-484e-9f70-46b749089171",
+    "name": "Chemical_Sans_V1",
+    "level": 4,
+    "bypassesPlayerLimit": false
   }
 ]
